@@ -34,19 +34,25 @@ var swiper = new Swiper(".mySwiper", {
     prevEl: ".swiper-button-prev",
   },
 });
+
+
+//email
+
+
 function sendMail() {
   // Prevent the form from submitting
   event.preventDefault();
   // Get the selected options from the language select tag
-  var selectedOptions = Array.from(document.getElementById('language').selectedOptions);
+  var selectedOptions = Array.from(document.getElementById('course').selectedOptions);
   var languageValues = selectedOptions.map(option => option.value);
   // Get the form values
   var templateParams = {
     language: languageValues.join(', '), // Convert the array to a comma-separated string
-    name: document.getElementById('name').value,
-    number: document.getElementById('number').value,
+    fname: document.getElementById('fname').value,
+    lname: document.getElementById('lname').value,
     email: document.getElementById('email').value,
-    message: document.getElementById('message').value
+    number: document.getElementById('number').value,
+    course: document.getElementById('course').value,
   };
   // Display the alert box
   Swal.fire({
@@ -69,15 +75,15 @@ function sendMail() {
     }
   });
   // Send the email using EmailJS
-  emailjs.send('service_s0iioyv', 'template_gjsiti5', templateParams)
+  emailjs.send('service_s0iioyv', 'template_010y82m', templateParams)
     .then(function(response) {
       console.log('Email sent successfully!', response.status, response.text);
       // Reset the form after sending
-      document.getElementById('language').value = '';
-      document.getElementById('name').value = '';
-      document.getElementById('number').value = '';
+      document.getElementById('fname').value = '';
+      document.getElementById('lname').value = '';
       document.getElementById('email').value = '';
-      document.getElementById('message').value = '';
+      document.getElementById('number').value = '';
+      document.getElementById('course').value = '';
     })
     .catch(function(error) {
       console.log('Email sending failed:', error);
